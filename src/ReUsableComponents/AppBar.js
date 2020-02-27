@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 import {
     AppBar,
     Toolbar,
@@ -19,7 +18,6 @@ const useStyles = makeStyles ({
 
 function AppBarComponent (props) 
 {
-
     const classes = useStyles();
 
     return (
@@ -27,7 +25,7 @@ function AppBarComponent (props)
             <AppBar position='static'>
                 <Toolbar>
                     <Typography variant="h6" className = {classes.typography}>
-                        Sign In
+                        {props.name}
                     </Typography>
                 </Toolbar>
             </AppBar>

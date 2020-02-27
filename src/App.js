@@ -1,12 +1,13 @@
 import React from 'react';
 
 import SignIn from './Pages/SignIn';
+import Dashboard from './Pages/Dashboard';
 
 function App () 
 {
   return (
     <div>
-      <SignIn/>
+      <Dashboard/>
     </div>
   )
 }
