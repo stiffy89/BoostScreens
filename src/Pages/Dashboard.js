@@ -4,13 +4,15 @@ import ScrollMenu from'react-horizontal-scrolling-menu';
 
 
 import AppBarComponent from '../ReUsableComponents/AppBar';
-import Button from '../ReUsableComponents/Button';
+import ButtonTemplate from '../ReUsableComponents/Button';
 import Card from '../ReUsableComponents/Cards';
 
 import {
     Paper,
     GridList,
-    Grid
+    Grid,
+    ButtonGroup,
+    Button
 } from '@material-ui/core';
 
 import {makeStyles} from '@material-ui/core/styles';
@@ -32,21 +34,21 @@ const useStyles = makeStyles ({
     paper: {
         width: "100vw",
         height: "60vh",
-        marginTop: "30vh",
         marginBottom: "10vh",
-        display: "flex",
         backgroundColor: "#f5eed7",
-        overflow: "hidden"
     },
 
-    gridList: {
-        flexWrap: 'nowrap',
-        // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
-        transform: 'translateZ(0)',
+    perspectiveMode: {
+        width: "auto",
+        height: "auto",
+        marginTop: "30vh",
+        marginLeft: "10vw",
+        marginBottom: "1vh"
     },
 
-    grid: {
-        width: "200vw"
+    perspectiveButton: {
+      paddingLeft: "30px",
+      paddingRight: "30px"
     }
 });
 
@@ -101,7 +103,15 @@ function Dashboard (props)
             height: "140",
             width: "140"
         }
-    ] 
+    ];
+    
+    const buttonArray = [
+      "My Scenario",
+      "Archive",
+      "Template",
+      "Progress"
+    ];
+
     const classes = useStyles();
 
     const cardItems = cardArray.map(card => {
@@ -115,13 +125,15 @@ function Dashboard (props)
                 />
     });
 
-    const cardContainer = () => {
-        return (
-            <Grid container>
-                {cardItems}
-            </Grid>
-        )
-    }
+    const buttonGroup = buttonArray.map(button => {
+      return <Button
+              key = {button}
+              buttonName={button}
+              variant="text"
+              component="button"
+              color="primary"
+            />
+    });
 
     const Arrow = ({ text, className }) => {
         return (
@@ -139,108 +151,49 @@ function Dashboard (props)
             <AppBarComponent name="Dashboard"/>
             
             <div className = {classes.button}>
-                <Button
-                    buttonName = "Create Quiz"
-                    variant = "contained"
-                    color = "primary"
-                    component = "button"
-                />
+              <ButtonTemplate
+                  buttonName = "Create Quiz"
+                  variant = "contained"
+                  color = "primary"
+                  component = "button"
+              />
             </div>
 
-            <ScrollMenu
-                data={cardItems}
-                arrowLeft={ArrowLeft}
-                arrowRight={ArrowRight}
-            />
-            
+            <div className = {classes.perspectiveMode}>
+              <ButtonGroup
+                orientation="horizontal"
+                color="primary"
+                aria-label="vertical contained primary button group"
+                variant="text"
+              >
+                <Button className = {classes.perspectiveButton}>
+                  My Scenario
+                </Button>
+
+                <Button className = {classes.perspectiveButton}>
+                  Archive
+                </Button>
+
+                <Button className = {classes.perspectiveButton}>
+                  Template
+                </Button>
+
+                <Button className = {classes.perspectiveButton}> 
+                  Progress
+                </Button>
+              </ButtonGroup>
+            </div>
+
+            <div className = {classes.paper}>
+              <ScrollMenu
+                  data={cardItems}
+                  arrowLeft={ArrowLeft}
+                  arrowRight={ArrowRight}
+              />
+            </div>
         </div>
     )
 }
-
-
-
-
-
-
-// list of items
-/*const list = [
-    { name: 'item1' },
-    { name: 'item2' },
-    { name: 'item3' },
-    { name: 'item4' },
-    { name: 'item5' },
-    { name: 'item6' },
-    { name: 'item7' },
-    { name: 'item8' },
-    { name: 'item9' }
-  ];
-   
-  // One item component
-  // selected prop will be passed
-  const MenuItem = ({text, selected}) => {
-    return <div
-      className={`menu-item ${selected ? 'active' : ''}`}
-      >{text}</div>;
-  };
-   
-  // All items component
-  // Important! add unique key
-  export const Menu = (list, selected) =>
-    list.map(el => {
-      const {name} = el;
-   
-      return <MenuItem text={name} key={name} selected={selected} />;
-    });
-   
-   
-  const Arrow = ({ text, className }) => {
-    return (
-      <div
-        className={className}
-      >{text}</div>
-    );
-  };
-   
-   
-  const ArrowLeft = Arrow({ text: '<', className: 'arrow-prev' });
-  const ArrowRight = Arrow({ text: '>', className: 'arrow-next' });
-   
-  const selected = 'item1';
-   
-  class App extends Component {
-    constructor(props) {
-      super(props);
-      // call it again if items count changes
-      this.menuItems = Menu(list, selected);
-    }
-   
-    state = {
-      selected
-    };
-   
-    onSelect = key => {
-      this.setState({ selected: key });
-    }
-   
-   
-    render() {
-      const { selected } = this.state;
-      // Create menu from items
-      const menu = this.menuItems;
-   
-      return (
-        <div className="App">
-          <ScrollMenu
-            data={menu}
-            arrowLeft={ArrowLeft}
-            arrowRight={ArrowRight}
-            selected={selected}
-            onSelect={this.onSelect}
-          />
-        </div>
-      );
-    }
-  } */
 
 
 

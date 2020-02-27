@@ -11,12 +11,14 @@ import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
     root: {
-        margin:"50px"
+        margin:"30px",
+        width: "200px",
+        height: "300px"
     },
 
     dimentions: {
-        width: "140",
-        height: "140"
+        width: "200px",
+        height: "150px"
     }
 });
 
@@ -32,7 +34,7 @@ function CardsTemplate (props)
                     <CardMedia
                         className = {classes.dimentions}
                         src = {props.imageURL}
-                        component = "image"
+                        component = "img"
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
