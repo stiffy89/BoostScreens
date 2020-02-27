@@ -18,7 +18,8 @@ const useStyles = makeStyles({
 
     dimentions: {
         width: "200px",
-        height: "150px"
+        height: "150px",
+        opacity: "0.7"
     }
 });
 
