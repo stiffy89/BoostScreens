@@ -6,11 +6,11 @@ import {
     Button
 } from '@material-ui/core';
 
-
 function ButtonTemplate (props) 
 {
     return (
         <Button 
+            
             variant={props.variant} 
             color={props.color} 
             component={props.button}>
@@ -19,7 +19,6 @@ function ButtonTemplate (props)
 
         </Button>
     )
-
 }
 
 export default ButtonTemplate;
