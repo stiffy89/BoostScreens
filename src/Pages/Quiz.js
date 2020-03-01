@@ -75,8 +75,10 @@ const useStyles = makeStyles ( theme => ({
     }
 }));
 
-function Quiz () 
+function Quiz (props) 
 {
+
+    const [dummyData, setDummyData] = useState(props.data);
 
     const classes = useStyles();
 
@@ -128,6 +130,7 @@ function Quiz ()
                     </Link>
                 </Breadcrumbs>
                 <List className = {classes.list}>
+                    
                         {quizCard()}
                         {quizCard()}
                         {quizCard()}
