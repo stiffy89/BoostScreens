@@ -3,6 +3,8 @@ import {makeStyles} from "@material-ui/core/styles";
 
 import AppBarComponent from '../ReUsableComponents/AppBar';
 import ButtonComponent from '../ReUsableComponents/Button';
+import QuizCardComponent from '../ReUsableComponents/QuizCard';
+import QuizCreationComponent from'../ReUsableComponents/QuizCardCreation';
 
 import {
     Paper,
@@ -57,21 +59,6 @@ const useStyles = makeStyles ( theme => ({
         marginLeft: '12vw',
         overflow: 'auto',
         maxHeight: "100%",
-    },
-
-    listSection: {
-        backgroundColor: 'inherit',
-        padding: 0,
-    },
-
-    textField: {
-        height: '100px',
-        width: "100%",
-        backgroundColor: "#fcf9ed",
-    },
-
-    li: {
-        paddingBottom: '3vh'
     }
 }));
 
@@ -82,19 +69,14 @@ function Quiz (props)
 
     const classes = useStyles();
 
-    const quizCard = () => {
-        return (
-            <li className = {classes.li}>
-                <ul>
-                    <ListItem>
-                        <Paper className = {classes.textField}>
-
-                        </Paper>
-                    </ListItem>
-                </ul>
-            </li>
-        )
-    }
+    const completedCards = dummyData.map(singleData => { 
+             return   <QuizCardComponent
+                        key = {singleData.key}
+                        heading = {singleData.name}
+                        question = {singleData.question}
+                        answer = {singleData.answer}
+                    />
+        });
 
     return (
         <div>
@@ -130,12 +112,10 @@ function Quiz (props)
                     </Link>
                 </Breadcrumbs>
                 <List className = {classes.list}>
-                    
-                        {quizCard()}
-                        {quizCard()}
-                        {quizCard()}
-                        {quizCard()}
+                    {completedCards}
+                    <QuizCreationComponent/>
                 </List>
+
             </Paper>
            </div>
             

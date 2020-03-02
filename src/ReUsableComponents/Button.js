@@ -10,7 +10,6 @@ function ButtonTemplate (props)
 {
     return (
         <Button 
-            
             variant={props.variant} 
             color={props.color} 
             component={props.button}>
