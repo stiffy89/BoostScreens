@@ -5,6 +5,7 @@ import AppBarComponent from '../ReUsableComponents/AppBar';
 import ButtonComponent from '../ReUsableComponents/Button';
 import QuizCardComponent from '../ReUsableComponents/QuizCard';
 import QuizCreationComponent from'../ReUsableComponents/QuizCardCreation';
+import SideBarAction from '../ReUsableComponents/SideBarAction';
 
 import {
     Paper,
@@ -15,7 +16,8 @@ import {
     InputBase,
     Breadcrumbs,
     Link,
-    Typography
+    Typography,
+    Grid
 
 } from "@material-ui/core";
 
@@ -111,11 +113,13 @@ function Quiz (props)
                     Preview
                     </Link>
                 </Breadcrumbs>
-                <List className = {classes.list}>
-                    {completedCards}
-                    <QuizCreationComponent/>
-                </List>
-
+                <Grid container direction="row">
+                    <SideBarAction/>
+                    <List className = {classes.list}>
+                        {completedCards}
+                        <QuizCreationComponent/>
+                    </List>
+                </Grid>
             </Paper>
            </div>
             

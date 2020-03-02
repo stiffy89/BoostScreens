@@ -5,7 +5,7 @@ import {
     Paper,
     ListItem,
     List,
-    InputBase
+    InputBase,
 } from '@material-ui/core';
 
 import {makeStyles} from '@material-ui/core/styles';
@@ -13,10 +13,10 @@ import {makeStyles} from '@material-ui/core/styles';
 const useStyles = makeStyles({
     root: {
         width: "100%",
-        height: "300px",
+        height: "auto",
         backgroundColor: "#e8e4d5",
         paddingBottom: "1vh",
-        overflow: "auto"
+        overflow: "auto",
     },
 
     question: {
@@ -29,10 +29,16 @@ const useStyles = makeStyles({
 
     li: {
         alignContent: "center"
+    },
+
+    heading: {
+        marginTop: '2vh',
+        marginBottom: '2vh',
+        marginLeft: '3.5vw'
     }
 });
 
-function TextArea() {
+function TextArea(placeHolder) {
 
     const markupStyle = {
         listItem: {
@@ -43,7 +49,7 @@ function TextArea() {
 
         paperItem: {
             width: "90%",
-            height: "auto",
+            height: 'auto',
             backgroundColor: "#cfcbc0"
         },
 
@@ -66,7 +72,7 @@ function TextArea() {
             >
                <InputBase
                     style = {markupStyle.inputBase}
-                    placeholder = "please enter your question"
+                    placeholder = {placeHolder}
                     multiline = "true"
                     rowsMax = "4"
                />
@@ -82,9 +88,10 @@ function QuizCardCreation ()
 
     return (
         <List className = {classes.root}>
-             {TextArea()}
-             {TextArea()}
-             {TextArea()}
+            <Typography  className = {classes.heading} variant='h7' color='primary'>
+                Quiz Template
+            </Typography>
+             {TextArea("Please enter your question")}
         </List>
     )
 }
